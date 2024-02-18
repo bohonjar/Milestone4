@@ -1,0 +1,39 @@
+<div>
+  <h2>List of Books</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>Title</th>
+        <th>Author ID</th>
+        <th>Publication Year</th>
+        <th>Genre</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let book of books">
+        <td>
+          <span *ngIf="!book.editMode">{{ book.title }}</span>
+          <input *ngIf="book.editMode" [(ngModel)]="book.title" type="text">
+        </td>
+        <td>
+          <span *ngIf="!book.editMode">{{ book.authorId }}</span>
+          <input *ngIf="book.editMode" [(ngModel)]="book.authorId" type="number">
+        </td>
+        <td>
+          <span *ngIf="!book.editMode">{{ book.publicationYear }}</span>
+          <input *ngIf="book.editMode" [(ngModel)]="book.publicationYear" type="number">
+        </td>
+        <td>
+          <span *ngIf="!book.editMode">{{ book.genre }}</span>
+          <input *ngIf="book.editMode" [(ngModel)]="book.genre" type="text">
+        </td>
+        <td>
+          <button *ngIf="!book.editMode" (click)="toggleEditMode(book)">Update</button>
+          <button *ngIf="book.editMode" (click)="saveBook(book)">Save</button>
+          <button (click)="deleteBook(book)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
